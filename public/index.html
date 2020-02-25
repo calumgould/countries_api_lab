@@ -16,5 +16,23 @@
         <h1>{{countries[selectedCountryIndex].name}}</h1>
         <img :src="countries[selectedCountryIndex].flag">
       </div>
+
+      <div class="favourite">
+        <h2>Add a favourite country</h2>
+        <form @submit.prevent="addFavouriteCountry">
+          <select class="list"  v-model="favouriteCountryIndex">
+            <option v-for="(country, index) in countries" :value="index">{{ country.name }}</option>
+          </select>
+          <input type="submit" value="Save">
+        </form>
+
+        <h1>Favourite Countries:</h1>
+        <ul>
+          <li v-for="favouriteCountry in favouriteCountries">
+            {{favouriteCountry.name}}
+          </li>
+        </ul>
+
+      </div>
   </body>
 </html>
