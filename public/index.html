@@ -8,8 +8,13 @@
   </head>
   <body>
     <div id="app">
-      <!-- <div class="population" v-for="country in countries">
-        <h1>{{ country.population }}</h1>
-      </div> -->
+      <h1>Total Population : {{ totalPopulation }}</h1>
+      <select class="list"  v-model="selectedCountryIndex">
+        <option v-for="(country, index) in countries" :value="index">{{ country.name }}</option>
+      </select>
+      <div class="" v-if="selectedCountryIndex">
+        <h1>{{countries[selectedCountryIndex].name}}</h1>
+        <img :src="countries[selectedCountryIndex].flag">
+      </div>
   </body>
 </html>

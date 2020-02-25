@@ -4,13 +4,21 @@ document.addEventListener('DOMContentLoaded', () => {
   new Vue({
     el: "#app",
     data: {
-      countries: []
+      countries: [],
+      selectedCountryIndex: null
     },
     mounted(){
-      this.fetchPopulation()
+      this.fetchCountries()
+    },
+    computed: {
+      totalPopulation: function () {
+        return this.countries.reduce((total, country) => {
+          return total += country.population
+        }, 0)
+      }
     },
     methods: {
-      fetchPopulation: function () {
+      fetchCountries: function () {
         const request = fetch("https://restcountries.eu/rest/v2/all")
         .then(response => response.json())
         .then((data) => this.countries = data)
